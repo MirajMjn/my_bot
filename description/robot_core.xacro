@@ -52,6 +52,10 @@
     </xacro:inertial_box>
 </link>
 
+<gazebo reference="chassis">
+    <material>Gazebo/White</material>
+</gazebo>
+
 <!-- LEFT WHEEL LINK-->
 
 <joint name="left_wheel_joint" type="continuous">
@@ -118,7 +122,7 @@
             <sphere radius="0.05" />
         </geometry>
         <material name="black" />
-    </visual>
+    </visual>           
     <collision>
         <geometry>
             <sphere radius="0.05" />
