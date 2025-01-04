@@ -25,21 +25,7 @@ def generate_launch_description():
                     get_package_share_directory(package_name),'launch','rsp.launch.py'
                 )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
-
-    # joystick = IncludeLaunchDescription(
-    #             PythonLaunchDescriptionSource([os.path.join(
-    #                 get_package_share_directory(package_name),'launch','joystick.launch.py'
-    #             )]), launch_arguments={'use_sim_time': 'true'}.items()
-    # )
-
-    # twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
-    # twist_mux = Node(
-    #         package="twist_mux",
-    #         executable="twist_mux",
-    #         parameters=[twist_mux_params, {'use_sim_time': True}],
-    #         remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
-    #     )
-
+    
     default_world = os.path.join(
         get_package_share_directory(package_name),
         'worlds',
@@ -69,18 +55,6 @@ def generate_launch_description():
                                    '-z', '0.1'],
                         output='screen')
 
-    # diff_drive_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=["diff_cont"],
-    # )
-
-    # joint_broad_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=["joint_broad"],
-    # )
-
     bridge_params = os.path.join(get_package_share_directory(package_name),'config','gz_bridge.yaml')
     ros_gz_bridge = Node(
         package="ros_gz_bridge",
@@ -92,22 +66,11 @@ def generate_launch_description():
         ]
     )
 
-    # ros_gz_image_bridge = Node(
-    #     package="ros_gz_image",
-    #     executable="image_bridge",
-    #     arguments=["/camera/image_raw"]
-    # )
-
     # Launch them all!
     return LaunchDescription([
         rsp,
         spawn_entity,
-        # joystick,
-        # twist_mux,
         world_arg,
-        # diff_drive_spawner,
-        # joint_broad_spawner,
         ros_gz_bridge,
-        # ros_gz_image_bridge
         gazebo,
     ])

@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <xacro:include filename="measurements.xacro" />
+
     <gazebo>
         <plugin name="gz::sim::systems::DiffDrive" filename="gz-sim-diff-drive-system">
 
             <!-- Wheel Information -->
             <left_joint>left_wheel_joint</left_joint>
             <right_joint>right_wheel_joint</right_joint>
-            <wheel_separation>0.297</wheel_separation>
-            <wheel_radius>0.033</wheel_radius>
+            <wheel_separation>${chassis_width}</wheel_separation>
+            <wheel_radius>${wheel_radius}</wheel_radius>
 
 
             <!-- Limits -->
-            <!-- <max_wheel_torque>200</max_wheel_torque> -->
-            <max_linear_acceleration>0.33</max_linear_acceleration>
+            <max_wheel_torque>200</max_wheel_torque>
+            <!-- <max_linear_acceleration>0.2</max_linear_acceleration> -->
 
             <!-- Input -->
             <topic>cmd_vel</topic>
